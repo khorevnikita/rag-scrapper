@@ -55,6 +55,7 @@ python -m cli mayo_clinic_health_system collect_links --url https://www.mayoclin
 ```shell
 python -m cli mayo_clinic_health_system extract_text --folder elenadoc_nutr/mayo_clinic_health_system
 ```
+
 #### EuFic
 
 - Сайт https://www.eufic.org/en/
@@ -75,6 +76,7 @@ python -m cli eufic collect_links --url https://www.eufic.org/en/sitemap.xml --f
 ```shell
 python -m cli eufic extract_text --folder elenadoc_nutr/eufic
 ```
+
 #### Food Guide Canada
 
 - Сайт https://food-guide.canada.ca/en/
@@ -94,4 +96,26 @@ python -m cli food_guide_canada collect_links --url https://food-guide.canada.ca
 
 ```shell
 python -m cli food_guide_canada extract_text --folder elenadoc_nutr/food_guide_canada
+```
+
+#### Health harvard
+
+- Сайт (раздел) https://www.health.harvard.edu/category/staying-healthy
+- Sitemap https://www.health.harvard.edu/sitemap.xml
+-
+
+Шаги:
+
+1. Собрать страницы sitemap (вложенность = 1)
+2. Собрать HTML (фильтр на лишние теги)
+
+Папка проекта в bucket: `elenadoc_nutr/health_harvard`
+
+```shell
+cd src
+python -m cli health_harvard collect_links --url https://www.health.harvard.edu/sitemap.xml --folder elenadoc_nutr/health_harvard
+```
+
+```shell
+python -m cli health_harvard extract_text --folder elenadoc_nutr/health_harvard
 ```
