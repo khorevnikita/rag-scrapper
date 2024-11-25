@@ -12,7 +12,7 @@ def main():
     parser.add_argument("source", help="Source to collect")
     parser.add_argument("action", choices=["collect_links", "extract_text"], help="Action to perform")
     parser.add_argument("--url", help="URL to start scraping")
-    parser.add_argument("--csv", help="CSV file path for saving/loading links")
+    parser.add_argument("--csv", help="CSV file path for saving/loading links", default="links.csv")
     parser.add_argument("--folder", help="Folder in s3 bucket")
     args = parser.parse_args()
 
