@@ -36,3 +36,14 @@ class BaseScraper(ABC):
     def parse_xml(self, xml_content: str) -> list[str]:
         soup = BeautifulSoup(xml_content, "lxml-xml")
         return [loc.text for loc in soup.find_all("loc")]
+
+    def fetch_pdf(self, url: str) -> bytes:
+        """
+        Загрузка PDF-файла по ссылке.
+        """
+        headers = {
+            "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+        }
+        response = requests.get(url, headers=headers, stream=True)
+        response.raise_for_status()
+        return response.content

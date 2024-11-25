@@ -142,7 +142,7 @@ python -m cli help_guide extract_text --folder elenadoc_nutr/help_guide
 #### NHS
 - https://www.nhs.uk/live-well/
 - Sitemap: https://www.nhs.uk/sitemaps/sitemap-content.xml
-- 
+
 Папка проекта в bucket: `elenadoc_nutr/nhs`
 
 ```shell
@@ -152,4 +152,28 @@ python -m cli nhs collect_links --url https://www.nhs.uk/sitemaps/sitemap-conten
 
 ```shell
 python -m cli nhs extract_text --folder elenadoc_nutr/nhs
+```
+
+#### World Health Organization
+- Сайт https://www.who.int/publications/m?healthtopics=2e85d1d9-8b1f-4676-9aeb-991ca5b45b5b
+- Список документов из API И публикаций https://www.who.int/publications/i?healthtopics=2e85d1d9-8b1f-4676-9aeb-991ca5b45b5b&publishingoffices=&healthtopics-hidden=true
+
+Пример JSON:
+https://www.who.int/api/hubs/meetingreports?sf_site=15210d59-ad60-47ff-a542-7ed76645f0c7&sf_provider=OpenAccessProvider&sf_culture=en&$orderby=PublicationDateAndTime%20desc&$select=Title,ItemDefaultUrl,FormatedDate,Tag,ThumbnailUrl,DownloadUrl,TrimmedTitle&%24format=json&%24top=100&%24count=true
+
+Шаги:
+1. Собрать страницы JSON (с пагинацией)
+2. Выкачать PDF
+
+Папка проекта в bucket: `elenadoc_nutr/nhs`
+
+```shell
+cd src
+python -m cli who collect_links --url "https://www.who.int/api/hubs/meetingreports?sf_site=15210d59-ad60-47ff-a542-7ed76645f0c7&sf_provider=OpenAccessProvider&sf_culture=en&%24format=json&%24filter=healthtopics%2Fany(a%3Aa%20eq%202e85d1d9-8b1f-4676-9aeb-991ca5b45b5b)&%24count=true" --csv documents_links.csv --folder elenadoc_nutr/who
+python -m cli who collect_links --url "https://www.who.int/api/hubs/publications?sf_site=15210d59-ad60-47ff-a542-7ed76645f0c7&sf_provider=OpenAccessProvider&sf_culture=en&%24format=json&%24filter=healthtopics%2Fany(a%3Aa%20eq%202e85d1d9-8b1f-4676-9aeb-991ca5b45b5b)&%24count=true" --csv publications_links.csv --folder elenadoc_nutr/who
+```
+
+```shell
+python -m cli who transfer_file --folder elenadoc_nutr/who --csv documents_links.csv
+python -m cli who transfer_file --folder elenadoc_nutr/who --csv publications_links.csv
 ```

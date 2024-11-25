@@ -17,6 +17,8 @@ class HelpGuideTextExtractor(TextExtractor):
     def extract_text(self, page_content: str) -> str:
         soup = BeautifulSoup(page_content, "html.parser")
         section = soup.find("section", id="post-main")
+        if not section:
+            raise ValueError("No article found")
         content = section.find("div", class_="post-main-content")
         if not content:
             raise ValueError("No article content found")

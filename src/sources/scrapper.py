@@ -5,6 +5,7 @@ from sources.food_guide_canada.scrapper import FoodGuideCanadaTextExtractor, Foo
 from sources.health_harvard.scrapper import HealthHarvardLinkCollector, HealthHarvardTextExtractor
 from sources.help_guide.scrapper import HelpGuideLinkCollector, HelpGuideTextExtractor
 from sources.nhs.scrapper import NHSLinkCollector, NHSTextExtractor
+from sources.who.scrapper import WhoLinkCollector, WhoTextExtractor
 from interfaces import LinkCollector, TextExtractor
 
 
@@ -17,6 +18,7 @@ def get_scrapper(key: str) -> (LinkCollector | None, TextExtractor | None):
         "health_harvard": (HealthHarvardLinkCollector, HealthHarvardTextExtractor),
         "help_guide": (HelpGuideLinkCollector, HelpGuideTextExtractor),
         "nhs": (NHSLinkCollector, NHSTextExtractor),
+        "who": (WhoLinkCollector, WhoTextExtractor),
     }
 
     if key not in class_map:

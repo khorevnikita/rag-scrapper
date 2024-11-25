@@ -10,7 +10,7 @@ from tqdm import tqdm
 def main():
     parser = argparse.ArgumentParser(description="Scraper CLI")
     parser.add_argument("source", help="Source to collect")
-    parser.add_argument("action", choices=["collect_links", "extract_text"], help="Action to perform")
+    parser.add_argument("action", choices=["collect_links", "extract_text", "transfer_file"], help="Action to perform")
     parser.add_argument("--url", help="URL to start scraping")
     parser.add_argument("--csv", help="CSV file path for saving/loading links", default="links.csv")
     parser.add_argument("--folder", help="Folder in s3 bucket")
@@ -46,6 +46,25 @@ def main():
             file_key = path.replace("/", "-")  # Заменяем / на -
 
             upload_to_s3(f"{args.folder}/library/{file_key}.txt", text)
+            print(f"Uploaded {file_key}.txt to S3")
+
+    elif args.action == "transfer_file":
+        links = load_links_from_csv_s3(f"{args.folder}/{args.csv}")
+        for link in tqdm(links, desc="Processing links", unit="link"):
+            scraper = BaseScraper()
+            try:
+                page_content = scraper.fetch_pdf(link)
+            except Exception as e:
+                print("Skipping", link, "error:", e)
+                continue
+            # Преобразуем путь URL в ключ
+            parsed_url = urlparse(link)
+            path = parsed_url.path.lstrip("/")  # Убираем начальный слэш
+            if not path or path.endswith("/"):
+                path = f"{path.rstrip('/')}/index"  # Добавляем index для пустых путей
+            file_key = path.replace("/", "-")  # Заменяем / на -
+
+            upload_to_s3(f"{args.folder}/library/{file_key}", page_content)
             print(f"Uploaded {file_key}.txt to S3")
 
 
