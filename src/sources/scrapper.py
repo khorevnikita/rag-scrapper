@@ -3,6 +3,7 @@ from sources.mayo_clinic_health_system.scrapper import MayoClinicTextExtractor, 
 from sources.eufic.scrapper import EuFicTextExtractor, EuFicLinkCollector
 from sources.food_guide_canada.scrapper import FoodGuideCanadaTextExtractor, FoodGuideCanadaLinkCollector
 from sources.health_harvard.scrapper import HealthHarvardLinkCollector, HealthHarvardTextExtractor
+from sources.help_guide.scrapper import HelpGuideLinkCollector, HelpGuideTextExtractor
 from interfaces import LinkCollector, TextExtractor
 
 
@@ -13,6 +14,7 @@ def get_scrapper(key: str) -> (LinkCollector | None, TextExtractor | None):
         "eufic": (EuFicLinkCollector, EuFicTextExtractor),
         "food_guide_canada": (FoodGuideCanadaLinkCollector, FoodGuideCanadaTextExtractor),
         "health_harvard": (HealthHarvardLinkCollector, HealthHarvardTextExtractor),
+        "help_guide": (HelpGuideLinkCollector, HelpGuideTextExtractor),
     }
 
     if key not in class_map:

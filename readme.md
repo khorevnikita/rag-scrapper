@@ -119,3 +119,22 @@ python -m cli health_harvard collect_links --url https://www.health.harvard.edu/
 ```shell
 python -m cli health_harvard extract_text --folder elenadoc_nutr/health_harvard
 ```
+
+#### Help Guide
+- Сайт https://www.helpguide.org/wellness/
+- Sitemap https://www.helpguide.org/sitemap_index.xml
+
+Шаги:
+1. Собрать страницы sitemap (вложенность = 2)
+2. Собрать HTML (фильтр на лишние теги)
+
+Папка проекта в bucket: `elenadoc_nutr/help_guide`
+
+```shell
+cd src
+python -m cli help_guide collect_links --url https://www.helpguide.org/sitemap_index.xml --folder elenadoc_nutr/help_guide
+```
+
+```shell
+python -m cli help_guide extract_text --folder elenadoc_nutr/help_guide
+```
