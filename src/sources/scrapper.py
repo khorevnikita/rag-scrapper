@@ -4,6 +4,7 @@ from sources.eufic.scrapper import EuFicTextExtractor, EuFicLinkCollector
 from sources.food_guide_canada.scrapper import FoodGuideCanadaTextExtractor, FoodGuideCanadaLinkCollector
 from sources.health_harvard.scrapper import HealthHarvardLinkCollector, HealthHarvardTextExtractor
 from sources.help_guide.scrapper import HelpGuideLinkCollector, HelpGuideTextExtractor
+from sources.nhs.scrapper import NHSLinkCollector, NHSTextExtractor
 from interfaces import LinkCollector, TextExtractor
 
 
@@ -15,6 +16,7 @@ def get_scrapper(key: str) -> (LinkCollector | None, TextExtractor | None):
         "food_guide_canada": (FoodGuideCanadaLinkCollector, FoodGuideCanadaTextExtractor),
         "health_harvard": (HealthHarvardLinkCollector, HealthHarvardTextExtractor),
         "help_guide": (HelpGuideLinkCollector, HelpGuideTextExtractor),
+        "nhs": (NHSLinkCollector, NHSTextExtractor),
     }
 
     if key not in class_map:

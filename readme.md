@@ -138,3 +138,18 @@ python -m cli help_guide collect_links --url https://www.helpguide.org/sitemap_i
 ```shell
 python -m cli help_guide extract_text --folder elenadoc_nutr/help_guide
 ```
+
+#### NHS
+- https://www.nhs.uk/live-well/
+- Sitemap: https://www.nhs.uk/sitemaps/sitemap-content.xml
+- 
+Папка проекта в bucket: `elenadoc_nutr/nhs`
+
+```shell
+cd src
+python -m cli nhs collect_links --url https://www.nhs.uk/sitemaps/sitemap-content.xml --folder elenadoc_nutr/nhs
+```
+
+```shell
+python -m cli nhs extract_text --folder elenadoc_nutr/nhs
+```
