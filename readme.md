@@ -75,3 +75,23 @@ python -m cli eufic collect_links --url https://www.eufic.org/en/sitemap.xml --f
 ```shell
 python -m cli eufic extract_text --folder elenadoc_nutr/eufic
 ```
+#### Food Guide Canada
+
+- Сайт https://food-guide.canada.ca/en/
+- Sitemap  https://food-guide.canada.ca/sitemap.xml
+
+Шаги:
+
+1. Собрать страницы sitemap (вложенность = 1)
+2. Собрать HTML (фильтр на лишние теги)
+
+Папка проекта в bucket: `elenadoc_nutr/food_guide_canada`
+
+```shell
+cd src
+python -m cli food_guide_canada collect_links --url https://food-guide.canada.ca/sitemap.xml --folder elenadoc_nutr/food_guide_canada
+```
+
+```shell
+python -m cli food_guide_canada extract_text --folder elenadoc_nutr/food_guide_canada
+```

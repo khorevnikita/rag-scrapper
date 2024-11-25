@@ -1,6 +1,7 @@
 from sources.eat_right.scrapper import EatRightLinkCollector, EatRightTextExtractor
 from sources.mayo_clinic_health_system.scrapper import MayoClinicTextExtractor, MayoClinicLinkCollector
 from sources.eufic.scrapper import EuFicTextExtractor, EuFicLinkCollector
+from sources.food_guide_canada.scrapper import FoodGuideCanadaTextExtractor, FoodGuideCanadaLinkCollector
 from interfaces import LinkCollector, TextExtractor
 
 
@@ -8,7 +9,8 @@ def get_scrapper(key: str) -> (LinkCollector | None, TextExtractor | None):
     class_map = {
         "eat_right": (EatRightLinkCollector, EatRightTextExtractor),
         "mayo_clinic_health_system": (MayoClinicLinkCollector, MayoClinicTextExtractor),
-        "eufic": (EuFicLinkCollector, EuFicTextExtractor)
+        "eufic": (EuFicLinkCollector, EuFicTextExtractor),
+        "food_guide_canada": (FoodGuideCanadaLinkCollector, FoodGuideCanadaTextExtractor),
     }
 
     if key not in class_map:
