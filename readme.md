@@ -177,3 +177,9 @@ python -m cli who collect_links --url "https://www.who.int/api/hubs/publications
 python -m cli who transfer_file --folder elenadoc_nutr/who --csv documents_links.csv
 python -m cli who transfer_file --folder elenadoc_nutr/who --csv publications_links.csv
 ```
+
+#### Dietary guidelines
+https://www.dietaryguidelines.gov/resources/consumer-resources
+- https://www.dietaryguidelines.gov/resources/2020-2025-dietary-guidelines-online-materials Просто выкачиваем 1 файл
+- https://www.dietaryguidelines.gov/professional-resources Из HTML вёрстки выдергиваем ссылки на PDF, выкачиваем PDF.
+
