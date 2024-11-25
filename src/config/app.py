@@ -1,0 +1,4 @@
+import os
+
+UPLOAD_ENDPOINT = os.getenv("UPLOAD_ENDPOINT")
+UPLOAD_API_KEY = os.getenv("UPLOAD_API_KEY")

@@ -1,5 +1,5 @@
 from sources.eat_right.scrapper import EatRightLinkCollector, EatRightTextExtractor
-from src.interfaces import LinkCollector, TextExtractor
+from interfaces import LinkCollector, TextExtractor
 
 
 def get_scrapper(key: str) -> (LinkCollector | None, TextExtractor | None):

@@ -7,5 +7,5 @@ class LinkCollector(ABC):
 
 class TextExtractor(ABC):
     @abstractmethod
-    def extract_text(self, page_content: str) -> dict[str, str]:
+    def extract_text(self, page_content: str) -> str:
         pass

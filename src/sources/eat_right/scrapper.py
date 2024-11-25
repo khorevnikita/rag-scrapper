@@ -10,7 +10,15 @@ class EatRightLinkCollector(BaseScraper, LinkCollector):
 
 
 class EatRightTextExtractor(TextExtractor):
-    def extract_text(self, page_content: str) -> dict[str, str]:
+    def extract_text(self, page_content: str) -> str:
         soup = BeautifulSoup(page_content, "html.parser")
-        content = soup.find("div", class_="content")
-        return {"content": content.text.strip()} if content else {}
+        # Ищем заголовок h1 с указанным классом
+        article_header = soup.find("h1", class_='article-detail-masthead__headline')
+        if not article_header:
+            raise ValueError("No article header found")
+        # Ищем элемент <main id="main">
+        content = soup.find("main", id="main")
+        if not content:
+            raise ValueError("No article content found")
+        # Возвращаем текст, если элемент найден, иначе пустой словарь
+        return content.get_text(strip=True)

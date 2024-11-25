@@ -10,5 +10,5 @@ class BaseScraper(ABC):
         return response.text
 
     def parse_xml(self, xml_content: str) -> list[str]:
-        soup = BeautifulSoup(xml_content, "xml")
+        soup = BeautifulSoup(xml_content, "lxml-xml")
         return [loc.text for loc in soup.find_all("loc")]
